@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  // basePath: '/your-repo-name', // Un-comment this if deploying to GitHub Pages under a subpath
+  basePath: '/test',
   images: {
     unoptimized: true,
   },
