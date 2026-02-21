@@ -71,11 +71,21 @@ export default function EditorPanel({ question }) {
                     <ChevronUp size={16} /> Test Results
                 </button>
                 <div className="flex items-center gap-3">
-                    <button className="flex items-center justify-center gap-2 border border-gray-300 dark:border-white text-black dark:text-white px-6 py-2 text-sm font-bold rounded hover:bg-gray-100 dark:hover:bg-[#1e242e] transition-colors bg-white dark:bg-transparent">
-                        <Play size={14} fill="currentColor" /> Run Code
-                    </button>
-                    <button className="bg-black dark:bg-[#0b0f16] text-white dark:text-[#4b5563] border border-black dark:border-transparent px-6 py-2 text-sm font-bold rounded transition-colors dark:cursor-not-allowed">
-                        Submit Code
+                    <button
+                        className="flex items-center justify-center bg-transparent cursor-pointer transition-all duration-200 ease hover:bg-[#22c55e] hover:bg-opacity-10"
+                        style={{
+                            gap: '8px',
+                            padding: '6px 18px',
+                            height: '38px',
+                            border: '1px solid #22c55e',
+                            borderRadius: '6px',
+                            color: '#22c55e',
+                            fontSize: '15px',
+                            fontWeight: '600',
+                            boxShadow: '0 0 8px #22c55e55'
+                        }}
+                    >
+                        <Play size={15} fill="transparent" strokeWidth={2} style={{ color: '#22c55e' }} /> Run Code
                     </button>
                 </div>
             </div>

@@ -26,9 +26,19 @@ export default function Header() {
     return (
         <header className="flex items-center justify-between px-4 h-14 bg-white dark:bg-[#0f141e] border-b border-gray-200 dark:border-[#2a323d] shrink-0">
             {/* Timer / Left Area */}
-            <div className="flex items-center gap-2 text-sm text-[#00ea64]">
-                <Clock size={16} />
-                <span className="font-semibold">{minutes} min {formattedSeconds} sec</span>
+            <div
+                className="flex items-center gap-1.5 cursor-pointer"
+                style={{
+                    backgroundColor: '#033a15',          // darker green
+                    borderRadius: '20px',                // pill shape
+                    padding: '2px 8px',                  // slight increase horizontally
+                    fontSize: '11px',                    // smaller text
+                    color: '#62ff7d',                    // softer green text
+                    boxShadow: '0 0 6px rgba(0, 255, 0, 0.25)' // subtle glow
+                }}
+            >
+                <Clock size={11} strokeWidth={2.3} color="#62ff7d" />
+                <span>{minutes} min {formattedSeconds} sec</span>
             </div>
 
             {/* Right Actions */}
