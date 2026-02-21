@@ -17,9 +17,28 @@ export default function EditorPanel({ question }) {
         monaco.editor.defineTheme('hr-dark', {
             base: 'vs-dark',
             inherit: true,
-            rules: [],
+            rules: [
+                { token: 'keyword', foreground: 'f92672' },          // import, class, public, static, void, int
+                { token: 'type', foreground: '66d9ef' },             // Type declarations
+                { token: 'type.identifier', foreground: '66d9ef' },  // Result, Solution
+                { token: 'identifier', foreground: 'f8f8f2' },       // variable names
+                { token: 'comment', foreground: '7f848e', fontStyle: 'italic' }, // comments
+                { token: 'string', foreground: 'e6db74' },           // strings
+                { token: 'number', foreground: 'ae81ff' },           // numbers
+            ],
             colors: {
                 'editor.background': '#0d0d0d',
+                'editorLineNumber.foreground': '#4f555f',            // Dark gray line numbers
+                'editorLineNumber.activeForeground': '#cdd9e5',      // Whiter for active line
+                'editorIndentGuide.background': '#2a323d',
+                'editor.lineHighlightBackground': '#1e242e',         // Highlight active line
+
+                // Autocomplete Dropdown matching HackerRank (Image 2)
+                'editorSuggestWidget.background': '#161b22',
+                'editorSuggestWidget.border': '#2a323d',
+                'editorSuggestWidget.selectedBackground': '#004b72',
+                'editorHoverWidget.background': '#161b22',
+                'editorHoverWidget.border': '#2a323d',
             }
         });
     }
@@ -30,9 +49,9 @@ export default function EditorPanel({ question }) {
             <div className="h-12 border-b border-gray-200 dark:border-[#2a323d] flex items-center justify-between px-4 shrink-0 bg-white dark:bg-[#0d0d0d]">
                 <div className="flex items-center gap-4">
                     <span className="text-sm font-semibold text-gray-500 dark:text-gray-400">Language</span>
-                    <div className="border border-gray-300 dark:border-[#2a323d] rounded px-3 py-1 flex items-center gap-6 cursor-pointer hover:bg-gray-100 dark:hover:bg-[#1e242e] transition-colors">
-                        <span className="text-sm font-semibold text-gray-800 dark:text-gray-200">Java 21</span>
-                        <ChevronDown size={14} className="text-gray-500" />
+                    <div className="w-[180px] h-[34px] border border-gray-300 dark:border-[#1F1F1F] rounded-[4px] px-3 flex items-center justify-between cursor-pointer hover:bg-gray-100 dark:hover:bg-[#1e242e] transition-colors">
+                        <span className="text-[13px] font-semibold text-gray-800 dark:text-gray-200">Java 21</span>
+                        <ChevronDown size={15} className="text-gray-500" />
                     </div>
                     <Info size={16} className="text-gray-400 cursor-pointer hover:text-gray-600 dark:hover:text-gray-300 transition-colors" />
                 </div>
@@ -65,6 +84,15 @@ export default function EditorPanel({ question }) {
                         suggestOnTriggerCharacters: true,
                         acceptSuggestionOnEnter: "on",
                         quickSuggestionsDelay: 10,
+                        renderLineHighlight: "all",
+                        hideCursorInOverviewRuler: true,
+                        overviewRulerBorder: false,
+                        scrollbar: {
+                            vertical: "visible",
+                            horizontal: "visible",
+                            verticalScrollbarSize: 10,
+                            horizontalScrollbarSize: 10,
+                        },
                     }}
                 />
             </div>
@@ -86,18 +114,18 @@ export default function EditorPanel({ question }) {
                     <button
                         className="flex items-center justify-center bg-transparent cursor-pointer transition-all duration-200 ease hover:bg-[#22c55e] hover:bg-opacity-10"
                         style={{
-                            gap: '8px',
-                            padding: '6px 18px',
-                            height: '38px',
+                            gap: '6px',
+                            padding: '4px 14px',
+                            height: '32px',
                             border: '1px solid #22c55e',
-                            borderRadius: '6px',
+                            borderRadius: '10px',
                             color: '#22c55e',
-                            fontSize: '15px',
+                            fontSize: '13px',
                             fontWeight: '600',
-                            boxShadow: '0 0 8px #22c55e55'
+                            boxShadow: '0 0 6px #22c55e33'
                         }}
                     >
-                        <Play size={15} fill="transparent" strokeWidth={2} style={{ color: '#22c55e' }} /> Run Code
+                        <Play size={13} fill="transparent" strokeWidth={2} style={{ color: '#22c55e' }} /> Run Code
                     </button>
                 </div>
             </div>
