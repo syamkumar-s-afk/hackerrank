@@ -355,9 +355,6 @@
   .rounded {
     border-radius: 0.25rem;
   }
-  .rounded-\[4px\] {
-    border-radius: 4px;
-  }
   .rounded-\[8px\] {
     border-radius: 8px;
   }
@@ -629,14 +626,14 @@
       padding: calc(var(--spacing) * 8);
     }
   }
-  .dark\:border-\[\#1F1F1F\] {
-    &:is(.dark *) {
-      border-color: #1F1F1F;
-    }
-  }
   .dark\:border-\[\#2a323d\] {
     &:is(.dark *) {
       border-color: #2a323d;
+    }
+  }
+  .dark\:border-\[\#555555\] {
+    &:is(.dark *) {
+      border-color: #555555;
     }
   }
   .dark\:bg-\[\#0d0d0d\] {
@@ -740,18 +737,69 @@ body {
   color: var(--hr-text);
 }
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 14px;
+  height: 14px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--hr-bg);
+  border-left: 1px solid var(--hr-border);
+}
+::-webkit-scrollbar-track:horizontal {
+  border-left: none;
+  border-top: 1px solid var(--hr-border);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--hr-text-dimmed);
-  border-radius: 4px;
+  background-color: #6b7280;
+  border-radius: 10px;
+  border: 4px solid var(--hr-bg);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--hr-text);
+  background-color: #9ca3af;
+}
+::-webkit-scrollbar-button:single-button {
+  background-color: var(--hr-bg);
+  display: block;
+  background-size: 8px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+::-webkit-scrollbar-button:single-button:vertical {
+  border-left: 1px solid var(--hr-border);
+}
+::-webkit-scrollbar-button:single-button:horizontal {
+  border-top: 1px solid var(--hr-border);
+}
+::-webkit-scrollbar-button:single-button:vertical:decrement {
+  height: 14px;
+  width: 14px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='18 15 12 9 6 15'></polyline></svg>");
+}
+::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='18 15 12 9 6 15'></polyline></svg>");
+}
+::-webkit-scrollbar-button:single-button:vertical:increment {
+  height: 14px;
+  width: 14px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+}
+::-webkit-scrollbar-button:single-button:vertical:increment:hover {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+}
+::-webkit-scrollbar-button:single-button:horizontal:decrement {
+  height: 14px;
+  width: 14px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='15 18 9 12 15 6'></polyline></svg>");
+}
+::-webkit-scrollbar-button:single-button:horizontal:decrement:hover {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='15 18 9 12 15 6'></polyline></svg>");
+}
+::-webkit-scrollbar-button:single-button:horizontal:increment {
+  height: 14px;
+  width: 14px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='9 18 15 12 9 6'></polyline></svg>");
+}
+::-webkit-scrollbar-button:single-button:horizontal:increment:hover {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='9 18 15 12 9 6'></polyline></svg>");
 }
 @property --tw-rotate-x {
   syntax: "*";

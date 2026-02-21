@@ -49,7 +49,7 @@ export default function EditorPanel({ question }) {
             <div className="h-12 border-b border-gray-200 dark:border-[#2a323d] flex items-center justify-between px-4 shrink-0 bg-white dark:bg-[#0d0d0d]">
                 <div className="flex items-center gap-4">
                     <span className="text-sm font-semibold text-gray-500 dark:text-gray-400">Language</span>
-                    <div className="w-[180px] h-[34px] border border-gray-300 dark:border-[#1F1F1F] rounded-[4px] px-3 flex items-center justify-between cursor-pointer hover:bg-gray-100 dark:hover:bg-[#1e242e] transition-colors">
+                    <div className="w-[180px] h-[34px] border border-gray-300 dark:border-[#555555] rounded-[8px] px-3 flex items-center justify-between cursor-pointer hover:bg-gray-100 dark:hover:bg-[#1e242e] transition-colors">
                         <span className="text-[13px] font-semibold text-gray-800 dark:text-gray-200">Java 21</span>
                         <ChevronDown size={15} className="text-gray-500" />
                     </div>
