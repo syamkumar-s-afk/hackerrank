@@ -44,7 +44,6 @@
     --color-hr-panel-dark: #1e242e;
     --color-hr-text-dark: #ffffff;
     --color-hr-border-dark: #2a323d;
-    --color-hr-green: #00ea64;
     --color-hr-bg-light: #f3f7f7;
     --color-hr-text-light: #39424e;
   }
@@ -231,6 +230,9 @@
   .ml-6 {
     margin-left: calc(var(--spacing) * 6);
   }
+  .contents {
+    display: contents;
+  }
   .flex {
     display: flex;
   }
@@ -361,9 +363,6 @@
   .border-\[\#d8dee2\] {
     border-color: #d8dee2;
   }
-  .border-\[--color-hr-green\] {
-    border-color: --color-hr-green;
-  }
   .border-black {
     border-color: var(--color-black);
   }
@@ -470,10 +469,6 @@
     --tw-font-weight: var(--font-weight-bold);
     font-weight: var(--font-weight-bold);
   }
-  .font-medium {
-    --tw-font-weight: var(--font-weight-medium);
-    font-weight: var(--font-weight-medium);
-  }
   .font-semibold {
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
@@ -483,9 +478,6 @@
   }
   .text-\[\#39424e\] {
     color: #39424e;
-  }
-  .text-\[--color-hr-green\] {
-    color: --color-hr-green;
   }
   .text-black {
     color: var(--color-black);
@@ -524,13 +516,6 @@
     &:hover {
       @media (hover: hover) {
         background-color: #00cb55;
-      }
-    }
-  }
-  .hover\:bg-\[--color-hr-green\] {
-    &:hover {
-      @media (hover: hover) {
-        background-color: --color-hr-green;
       }
     }
   }
