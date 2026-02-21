@@ -21,10 +21,12 @@ export default function EditorPanel({ question }) {
                 { token: 'keyword', foreground: 'f92672' },          // import, class, public, static, void, int
                 { token: 'type', foreground: '66d9ef' },             // Type declarations
                 { token: 'type.identifier', foreground: '66d9ef' },  // Result, Solution
-                { token: 'identifier', foreground: 'f8f8f2' },       // variable names
+                { token: 'identifier', foreground: '60AFF0' },       // variable names
                 { token: 'comment', foreground: '7f848e', fontStyle: 'italic' }, // comments
                 { token: 'string', foreground: 'e6db74' },           // strings
                 { token: 'number', foreground: 'ae81ff' },           // numbers
+                { token: 'operator', foreground: 'f92672' },         // Operators = {}[](), etc
+                { token: 'delimiter', foreground: '60AFF0' }         // Brackets {}, ()
             ],
             colors: {
                 'editor.background': '#0d0d0d',
@@ -39,6 +41,36 @@ export default function EditorPanel({ question }) {
                 'editorSuggestWidget.selectedBackground': '#004b72',
                 'editorHoverWidget.background': '#161b22',
                 'editorHoverWidget.border': '#2a323d',
+            }
+        });
+
+        // Register custom java autocomplete snippets without needing a backend LSP
+        monaco.languages.registerCompletionItemProvider('java', {
+            provideCompletionItems: (model, position) => {
+                const suggestions = [
+                    {
+                        label: 'sout',
+                        kind: monaco.languages.CompletionItemKind.Snippet,
+                        insertText: 'System.out.println(${1});',
+                        insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+                        documentation: 'Print a string to standard output'
+                    },
+                    {
+                        label: 'psvm',
+                        kind: monaco.languages.CompletionItemKind.Snippet,
+                        insertText: 'public static void main(String[] args) {\n\t${1}\n}',
+                        insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+                        documentation: 'main method'
+                    },
+                    {
+                        label: 'fori',
+                        kind: monaco.languages.CompletionItemKind.Snippet,
+                        insertText: 'for (int i = 0; i < ${1:10}; i++) {\n\t${2}\n}',
+                        insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+                        documentation: 'for loop'
+                    }
+                ];
+                return { suggestions: suggestions };
             }
         });
     }
@@ -72,8 +104,8 @@ export default function EditorPanel({ question }) {
                     onMount={handleEditorDidMount}
                     options={{
                         minimap: { enabled: false },
-                        fontSize: 14,
-                        fontFamily: "'JetBrains Mono', 'Menlo', 'Monaco', 'Courier New', monospace",
+                        fontSize: 13,
+                        fontFamily: "monospace",
                         lineHeight: 22,
                         padding: { top: 16 },
                         scrollBeyondLastLine: false,
@@ -87,6 +119,7 @@ export default function EditorPanel({ question }) {
                         renderLineHighlight: "all",
                         hideCursorInOverviewRuler: true,
                         overviewRulerBorder: false,
+                        matchBrackets: "near",
                         scrollbar: {
                             vertical: "visible",
                             horizontal: "visible",

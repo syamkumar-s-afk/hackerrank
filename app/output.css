@@ -7,6 +7,8 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-red-400: oklch(70.4% 0.191 22.216);
+    --color-red-500: oklch(63.7% 0.237 25.331);
     --color-gray-50: oklch(98.5% 0.002 247.839);
     --color-gray-100: oklch(96.7% 0.003 264.542);
     --color-gray-200: oklch(92.8% 0.006 264.531);
@@ -208,8 +210,11 @@
   .mt-2 {
     margin-top: calc(var(--spacing) * 2);
   }
-  .mt-6 {
-    margin-top: calc(var(--spacing) * 6);
+  .mt-4 {
+    margin-top: calc(var(--spacing) * 4);
+  }
+  .mb-1 {
+    margin-bottom: calc(var(--spacing) * 1);
   }
   .mb-2 {
     margin-bottom: calc(var(--spacing) * 2);
@@ -387,6 +392,9 @@
   .border-\[\#00ea64\] {
     border-color: #00ea64;
   }
+  .border-\[\#2a323d\] {
+    border-color: #2a323d;
+  }
   .border-\[\#d8dee2\] {
     border-color: #d8dee2;
   }
@@ -402,8 +410,17 @@
   .border-transparent {
     border-color: transparent;
   }
+  .bg-\[\#0d1117\] {
+    background-color: #0d1117;
+  }
   .bg-\[\#00ea64\] {
     background-color: #00ea64;
+  }
+  .bg-\[\#22c55e\] {
+    background-color: #22c55e;
+  }
+  .bg-\[\#161b22\] {
+    background-color: #161b22;
   }
   .bg-\[\#eefbf2\] {
     background-color: #eefbf2;
@@ -426,6 +443,9 @@
   .p-6 {
     padding: calc(var(--spacing) * 6);
   }
+  .p-8 {
+    padding: calc(var(--spacing) * 8);
+  }
   .p-10 {
     padding: calc(var(--spacing) * 10);
   }
@@ -438,11 +458,17 @@
   .px-4 {
     padding-inline: calc(var(--spacing) * 4);
   }
+  .px-6 {
+    padding-inline: calc(var(--spacing) * 6);
+  }
   .px-8 {
     padding-inline: calc(var(--spacing) * 8);
   }
   .py-1\.5 {
     padding-block: calc(var(--spacing) * 1.5);
+  }
+  .py-2\.5 {
+    padding-block: calc(var(--spacing) * 2.5);
   }
   .py-3 {
     padding-block: calc(var(--spacing) * 3);
@@ -476,8 +502,8 @@
   .text-\[13px\] {
     font-size: 13px;
   }
-  .text-\[15px\] {
-    font-size: 15px;
+  .text-\[14px\] {
+    font-size: 14px;
   }
   .leading-relaxed {
     --tw-leading: var(--leading-relaxed);
@@ -490,6 +516,9 @@
   .font-semibold {
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
+  }
+  .text-\[\#0d1117\] {
+    color: #0d1117;
   }
   .text-\[\#00ea64\] {
     color: #00ea64;
@@ -524,6 +553,9 @@
   .text-hr-text-dimmed {
     color: var(--color-hr-text-dimmed);
   }
+  .text-white {
+    color: var(--color-white);
+  }
   .lowercase {
     text-transform: lowercase;
   }
@@ -557,6 +589,13 @@
     &:hover {
       @media (hover: hover) {
         background-color: #00cb55;
+      }
+    }
+  }
+  .hover\:bg-\[\#1ea850\] {
+    &:hover {
+      @media (hover: hover) {
+        background-color: #1ea850;
       }
     }
   }
