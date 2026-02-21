@@ -1,38 +1,43 @@
 export const questions = [
     {
         id: 'q1',
-        title: 'FizzBuzz',
+        title: 'Question 1',
         description: `
-You are given a number _n_.
-- For every integer _i_ from 1 to _n_, print:
-- **FizzBuzz** if _i_ is divisible by both 3 and 5
-- **Fizz** if _i_ is divisible by 3 only
-- **Buzz** if _i_ is divisible by 5 only
-- Otherwise, print _i_
+Given a string of lowercase English characters, transform it into a palindrome by rearranging and deleting characters from the string.
+Find the minimum number of deletions required so that the remaining string can be rearranged into a palindrome.
 
-Print one result per line.
+Note: A palindrome is a string that reads the same forwards and backwards, such as "racecar" or "level".
 
-**Example**
-Suppose _n_ = 15.
-Output:
-1
-2
-Fizz
-4
-Buzz
-Fizz
-7
-8
+**Example 1**
+Input: s = "abcedda"
+Output: 2
+Explanation:
+Possible approaches:
+- Remove characters at positions 1 and 2 to get "aedda", which can be rearranged into "adeda".
+- Remove characters at positions 1, 2, and 3 to get "adda", which is already a palindrome.
+The first approach is optimal.
+
+**Example 2**
+Input: s = "abdaa"
+Output: 2
+Explanation:
+One optimal solution for transforming "abdaa" into a palindrome is to remove the characters 'b' and 'd', resulting in "aaa".
+
+**Constraints**
+- 0 ≤ length of string ≤ 2*10^6
+- string consists of lowercase English letters
     `,
         codeTemplate: `import java.io.*;
 class Result {
     /*
-     * Complete the 'fizzBuzz' function below.
+     * Complete the 'minDeletions' function below.
      *
-     * The function accepts INTEGER n as parameter.
+     * The function is expected to return an INTEGER.
+     * The function accepts STRING s as parameter.
      */
-    public static void fizzBuzz(int n) {
+    public static int minDeletions(String s) {
         // Write your code here
+        return 0;
     }
 }
 public class Solution {

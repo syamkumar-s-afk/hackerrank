@@ -1,34 +1,44 @@
 @import "tailwindcss";
 
 @theme {
-  --color-hr-bg-dark: #0f141e;
-  --color-hr-panel-dark: #1e242e;
-  --color-hr-text-dark: #ffffff;
-  --color-hr-border-dark: #2a323d;
-  --color-hr-green: #00ea64;
-  --color-hr-green-hover: #00cb55;
-
-  --color-hr-bg-light: #f3f7f7;
-  --color-hr-panel-light: #ffffff;
-  --color-hr-text-light: #39424e;
-  --color-hr-border-light: #d8dee2;
+  /* Tailwind Theme Extension */
+  --color-hr-bg: var(--hr-bg);
+  --color-hr-panel: var(--hr-panel);
+  --color-hr-border: var(--hr-border);
+  --color-hr-border-alt: var(--hr-border-alt);
+  --color-hr-text: var(--hr-text);
+  --color-hr-text-dimmed: var(--hr-text-dimmed);
+  
+  --color-hr-green: #22c55e;
+  --color-hr-green-hover: #22c55e15;
 }
 
 @custom-variant dark (&:is(.dark *));
 
+/* CSS Variables for Light / Dark Mode */
+:root {
+  --hr-bg: #f3f7f7;
+  --hr-panel: #ffffff;
+  --hr-border: #d8dee2;
+  --hr-border-alt: #e5e7eb;
+  --hr-text: #39424e;
+  --hr-text-dimmed: #6b7280;
+}
+
+.dark {
+  --hr-bg: #0d1117;
+  --hr-panel: #161b22;
+  --hr-border: #2a2f34;
+  --hr-border-alt: #2e3438;
+  --hr-text: #d1d5db;
+  --hr-text-dimmed: #9ca3af;
+}
+
 body {
   margin: 0;
   font-family: Inter, system-ui, sans-serif;
-}
-
-.dark body {
-  background-color: var(--color-hr-bg-dark);
-  color: var(--color-hr-text-dark);
-}
-
-body {
-  background-color: var(--color-hr-bg-light);
-  color: var(--color-hr-text-light);
+  background-color: var(--hr-bg);
+  color: var(--hr-text);
 }
 
 /* Custom scrollbar for webkit */
@@ -40,9 +50,9 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #4a5568;
+  background: var(--hr-text-dimmed);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #718096;
+  background: var(--hr-text);
 }

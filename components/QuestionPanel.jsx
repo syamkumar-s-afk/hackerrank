@@ -31,7 +31,7 @@ export default function QuestionPanel({ question }) {
     };
 
     return (
-        <div className="flex-1 w-1/2 md:w-[40%] border-r border-[#d8dee2] dark:border-[#2a323d] bg-[#f3f7f7] dark:bg-[#0f141e] overflow-y-auto p-6 md:p-8 shrink-0 transition-colors custom-scrollbar">
+        <div className="flex-1 w-1/2 md:w-[40%] border-r border-[#d8dee2] dark:border-[#2a323d] bg-[#f3f7f7] dark:bg-[#0d0d0d] overflow-y-auto p-6 md:p-8 shrink-0 transition-colors custom-scrollbar">
             <div className="max-w-prose text-[15px] leading-relaxed">
                 <h1 className="text-2xl font-bold mb-8 flex items-center gap-3 text-gray-900 dark:text-white">
                     <Bookmark size={24} className="text-gray-500 dark:text-gray-400" />

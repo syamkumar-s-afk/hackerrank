@@ -3,7 +3,7 @@ import { PanelLeftClose, ChevronRight } from "lucide-react";
 
 export default function Sidebar({ questions, activeId, onSelect }) {
     return (
-        <div className="w-16 border-r border-gray-200 dark:border-[#2a323d] bg-gray-50 dark:bg-[#0f141e] flex flex-col items-center py-4 gap-4 shrink-0 transition-colors">
+        <div className="w-16 border-r border-gray-200 dark:border-[#2a323d] bg-gray-50 dark:bg-[#0d0d0d] flex flex-col items-center py-4 gap-4 shrink-0 transition-colors">
             <button className="p-2 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200" title="Collapse">
                 <PanelLeftClose size={20} />
             </button>

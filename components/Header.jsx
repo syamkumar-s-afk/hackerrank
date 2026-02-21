@@ -24,7 +24,7 @@ export default function Header() {
     const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
 
     return (
-        <header className="flex items-center justify-between px-4 h-14 bg-white dark:bg-[#0f141e] border-b border-gray-200 dark:border-[#2a323d] shrink-0">
+        <header className="flex items-center justify-between px-4 h-14 bg-white dark:bg-[#0d0d0d] border-b border-hr-border shrink-0">
             {/* Timer / Left Area */}
             <div
                 className="flex items-center gap-1.5 cursor-pointer"
@@ -42,21 +42,21 @@ export default function Header() {
             </div>
 
             {/* Right Actions */}
-            <div className="flex items-center gap-4 text-gray-600 dark:text-gray-300">
-                <button className="flex items-center gap-2 hover:text-gray-900 dark:hover:text-white transition-colors" title="Layout">
+            <div className="flex items-center gap-4 text-hr-text-dimmed">
+                <button className="flex items-center gap-2 hover:text-hr-text transition-colors" title="Layout">
                     <span className="text-sm">Layout</span>
                     <Layout size={18} />
                 </button>
 
-                <button onClick={toggleTheme} className="hover:text-gray-900 dark:hover:text-white transition-colors" title="Toggle Theme">
+                <button onClick={toggleTheme} className="hover:text-hr-text transition-colors" title="Toggle Theme">
                     {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
                 </button>
 
-                <button className="hover:text-gray-900 dark:hover:text-white transition-colors" title="Help">
+                <button className="hover:text-hr-text transition-colors" title="Help">
                     <HelpCircle size={18} />
                 </button>
 
-                <button className="ml-2 bg-white text-black border border-gray-300 dark:border-none px-4 py-1.5 rounded text-sm font-semibold hover:bg-gray-50 transition-colors">
+                <button className="ml-2 bg-[var(--hr-text)] text-[var(--hr-bg)] border-none px-4 py-1.5 rounded text-sm font-semibold hover:opacity-90 transition-opacity">
                     Save & Proceed
                 </button>
             </div>
