@@ -1,0 +1,24 @@
+{
+  "name": "hackerrank-clone",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm run tailwind:build && next dev",
+    "build": "npm run tailwind:build && next build",
+    "start": "next start",
+    "lint": "next lint",
+    "tailwind:build": "tailwindcss -i ./app/globals.css -o ./app/output.css",
+    "tailwind:watch": "tailwindcss -i ./app/globals.css -o ./app/output.css --watch"
+  },
+  "dependencies": {
+    "@monaco-editor/react": "^4.6.0",
+    "lucide-react": "^0.575.0",
+    "next": "14.2.14",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.0.0-beta.8",
+    "tailwindcss": "^4.0.0-beta.8"
+  }
+}
