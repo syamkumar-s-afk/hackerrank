@@ -1,20 +1,64 @@
-import Link from 'next/link';
+"use client";
+import { useState, useEffect } from "react";
+import Header from "../components/Header";
+import Sidebar from "../components/Sidebar";
+import QuestionPanel from "../components/QuestionPanel";
+import EditorPanel from "../components/EditorPanel";
+import Footer from "../components/Footer";
+import { questions } from "../data/questionData";
 
 export default function Home() {
-    return (
-        <main className="min-h-screen flex flex-col items-center justify-center bg-hr-bg-light dark:bg-hr-bg-dark transition-colors">
-            <div className="p-10 rounded-lg shadow-xl bg-white dark:bg-hr-panel-dark border border-gray-200 dark:border-hr-border-dark flex flex-col items-center max-w-md w-full text-center">
-                <h1 className="text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100">Coding Assessment</h1>
-                <p className="text-gray-600 dark:text-gray-400 mb-8">
-                    Welcome to the HackerRank-style coding environment clone. Click below to begin the dummy assessment.
-                </p>
-                <Link
-                    href="/test"
-                    className="bg-[#00ea64] hover:bg-[#00cb55] text-black font-semibold py-3 px-8 rounded transition-colors"
-                >
-                    Start Test
-                </Link>
+    const [hasStarted, setHasStarted] = useState(false);
+    const [activeQuestionId, setActiveQuestionId] = useState(questions[0].id);
+
+    useEffect(() => {
+        const initializeTest = async () => {
+            try {
+                // Request camera access. The stream is kept alive in memory so the browser 
+                // shows the active recording icon, but no data is actually recorded or uploaded.
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+                // Store the stream globally or in window so it doesn't get garbage collected immediately
+                window.activeProctorStream = stream;
+            } catch (err) {
+                // Ignore camera failures because the user explicitly requested avoiding hard blocks
+                console.warn("Camera access denied or unavailable, proceeding to test anyway.");
+            } finally {
+                // Unconditionally allow the user into the test
+                setHasStarted(true);
+            }
+        };
+
+        initializeTest();
+    }, []);
+
+    const activeQuestion = questions.find(q => q.id === activeQuestionId) || questions[0];
+
+    // Pre-start screen
+    if (!hasStarted) {
+        return (
+            <div className="flex flex-col items-center justify-center h-screen w-full bg-[#0d1117] text-white">
+                <div className="flex flex-col items-center space-y-4">
+                    <div className="w-8 h-8 border-4 border-[#22c55e] border-t-transparent rounded-full animate-spin"></div>
+                    <p className="text-gray-400 text-sm animate-pulse">Initializing your test environment...</p>
+                </div>
             </div>
-        </main>
+        );
+    }
+
+    // Actual Test UI
+    return (
+        <div className="flex flex-col h-screen w-full bg-white dark:bg-[#0f141e] text-[#39424e] dark:text-white overflow-hidden transition-colors">
+            <Header />
+            <div className="flex flex-1 overflow-hidden relative">
+                <Sidebar
+                    questions={questions}
+                    activeId={activeQuestionId}
+                    onSelect={setActiveQuestionId}
+                />
+                <QuestionPanel question={activeQuestion} />
+                <EditorPanel question={activeQuestion} />
+                <Footer />
+            </div>
+        </div>
     );
 }
