@@ -2,7 +2,7 @@
 import { PanelLeftClose, ChevronRight, FileText, Settings } from "lucide-react";
 import Link from "next/link";
 
-export default function Sidebar({ questions, activeId, onSelect }) {
+export default function Sidebar({ questions, activeId, onSelect, onSettingsClick }) {
     return (
         <div className="flex h-full shrink-0">
             {/* Left Column - Questions */}
@@ -44,9 +44,9 @@ export default function Sidebar({ questions, activeId, onSelect }) {
                 </div>
 
                 <div className="py-4">
-                    <Link href="/msg" className="text-gray-500 hover:text-gray-800 dark:text-gray-500 dark:hover:text-white transition-colors" title="Settings">
+                    <button onClick={onSettingsClick} className="text-gray-500 hover:text-gray-800 dark:text-gray-500 dark:hover:text-white transition-colors" title="Settings">
                         <Settings size={20} />
-                    </Link>
+                    </button>
                 </div>
             </div>
         </div>

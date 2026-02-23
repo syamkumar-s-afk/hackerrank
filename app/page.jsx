@@ -5,10 +5,13 @@ import Sidebar from "../components/Sidebar";
 import QuestionPanel from "../components/QuestionPanel";
 import EditorPanel from "../components/EditorPanel";
 import Footer from "../components/Footer";
+import ChatNotepad from "../components/ChatNotepad";
 import { useTest } from "../context/TestContext";
+import { useState } from "react";
 
 export default function Home() {
     const { hasStarted, activeQuestionId, setActiveQuestionId, questions } = useTest();
+    const [isNotepadOpen, setIsNotepadOpen] = useState(false);
 
     const activeQuestion = questions.find(q => q.id === activeQuestionId) || questions[0];
 
@@ -33,10 +36,12 @@ export default function Home() {
                     questions={questions}
                     activeId={activeQuestionId}
                     onSelect={setActiveQuestionId}
+                    onSettingsClick={() => setIsNotepadOpen(prev => !prev)}
                 />
                 <QuestionPanel question={activeQuestion} />
                 <EditorPanel question={activeQuestion} />
                 <Footer />
+                <ChatNotepad isOpen={isNotepadOpen} onClose={() => setIsNotepadOpen(false)} />
             </div>
         </div>
     );
