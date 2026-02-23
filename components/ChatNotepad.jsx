@@ -12,6 +12,8 @@ export default function ChatNotepad({ isOpen, onClose }) {
     const messagesEndRef = useRef(null);
     const socketRef = useRef(null);
 
+    const [isConnected, setIsConnected] = useState(false);
+
     useEffect(() => {
         if (!socketRef.current) {
             socketRef.current = io(process.env.NEXT_PUBLIC_CHAT_SERVER_URL || "http://localhost:3001", {
@@ -24,9 +26,14 @@ export default function ChatNotepad({ isOpen, onClose }) {
         // Run once on mount to handle already connected socket
         if (socket.connected) {
             setMyId(socket.id);
+            setIsConnected(true);
         }
 
-        const onConnect = () => setMyId(socket.id);
+        const onConnect = () => {
+            setMyId(socket.id);
+            setIsConnected(true);
+        };
+        const onDisconnect = () => setIsConnected(false);
         const onReceiveHistory = (history) => {
             setMessages((prev) => {
                 const welcomeMsg = prev.find(m => m.id === 1) || { id: 1, text: "Welcome to the real-time notepad! You can drop quick notes or chat here.", senderId: "system" };
@@ -42,11 +49,13 @@ export default function ChatNotepad({ isOpen, onClose }) {
         };
 
         socket.on("connect", onConnect);
+        socket.on("disconnect", onDisconnect);
         socket.on("message_history", onReceiveHistory);
         socket.on("receive_message", onReceiveMessage);
 
         return () => {
             socket.off("connect", onConnect);
+            socket.off("disconnect", onDisconnect);
             socket.off("message_history", onReceiveHistory);
             socket.off("receive_message", onReceiveMessage);
         };
@@ -66,11 +75,19 @@ export default function ChatNotepad({ isOpen, onClose }) {
         const messageData = {
             id: Date.now(),
             text: input,
-            senderId: socketRef.current.id || myId,
+            senderId: socketRef.current.id || myId || "offline-me",
         };
 
-        // Send the message to the server to be broadcasted
-        socketRef.current.emit("send_message", messageData);
+        // Optimistically add message to your own screen immediately
+        setMessages((prev) => {
+            if (prev.some(m => m.id === messageData.id)) return prev;
+            return [...prev, messageData];
+        });
+
+        // Send the message to the server to be broadcasted to OTHERS
+        if (socketRef.current.connected) {
+            socketRef.current.emit("send_message", messageData);
+        }
         setInput("");
     };
 
@@ -79,8 +96,11 @@ export default function ChatNotepad({ isOpen, onClose }) {
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-gray-100 dark:border-[#2a323d] bg-gray-50 dark:bg-[#161b22]">
                 <div className="flex items-center gap-2 text-gray-800 dark:text-gray-100 font-semibold">
-                    <PenTool size={18} className="text-blue-500" />
-                    <span>Notepad & Chat (Live)</span>
+                    <div className="relative">
+                        <PenTool size={18} className="text-blue-500" />
+                        <span className={`absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full border-2 border-white dark:border-[#161b22] ${isConnected ? 'bg-green-500' : 'bg-red-500 animate-pulse'}`}></span>
+                    </div>
+                    <span>Notepad {isConnected ? "(Live)" : "(Connecting...)"}</span>
                 </div>
                 <button
                     onClick={onClose}
