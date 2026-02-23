@@ -14,7 +14,7 @@ export default function ChatNotepad({ isOpen, onClose }) {
 
     useEffect(() => {
         if (!socketRef.current) {
-            socketRef.current = io("http://localhost:3001", {
+            socketRef.current = io(process.env.NEXT_PUBLIC_CHAT_SERVER_URL || "http://localhost:3001", {
                 transports: ['websocket'],
                 reconnection: true
             });
