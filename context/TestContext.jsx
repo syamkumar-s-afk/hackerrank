@@ -48,23 +48,8 @@ export function TestProvider({ children }) {
     useEffect(() => {
         if (hasStarted) return;
 
-        const initializeTest = async () => {
-            try {
-                const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
-                window.activeProctorStream = stream;
-            } catch (err) {
-                console.warn("Camera access denied or unavailable, proceeding to test anyway.");
-            } finally {
-                setHasStarted(true);
-            }
-        };
-
-        if (!window.hasInitializedTest) {
-            window.hasInitializedTest = true;
-            initializeTest();
-        } else {
-            setHasStarted(true);
-        }
+        // Remove the camera prompt to prevent the app from hanging if permissions are delayed or blocked
+        setHasStarted(true);
     }, [hasStarted]);
 
     return (
