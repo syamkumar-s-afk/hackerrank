@@ -1,4 +1,5 @@
 import { ThemeProvider } from "../context/ThemeContext";
+import { TestProvider } from "../context/TestContext";
 import "./output.css"; // Output from tailwind CLI
 
 export const metadata = {
@@ -10,9 +11,11 @@ export default function RootLayout({ children }) {
     return (
         <html lang="en" suppressHydrationWarning>
             <body>
-                <ThemeProvider>
-                    {children}
-                </ThemeProvider>
+                <TestProvider>
+                    <ThemeProvider>
+                        {children}
+                    </ThemeProvider>
+                </TestProvider>
             </body>
         </html>
     );

@@ -1,5 +1,6 @@
 "use client";
 import { PanelLeftClose, ChevronRight, FileText, Settings } from "lucide-react";
+import Link from "next/link";
 
 export default function Sidebar({ questions, activeId, onSelect }) {
     return (
@@ -43,9 +44,9 @@ export default function Sidebar({ questions, activeId, onSelect }) {
                 </div>
 
                 <div className="py-4">
-                    <button className="text-gray-500 hover:text-gray-800 dark:text-gray-500 dark:hover:text-white transition-colors" title="Settings">
+                    <Link href="/msg" className="text-gray-500 hover:text-gray-800 dark:text-gray-500 dark:hover:text-white transition-colors" title="Settings">
                         <Settings size={20} />
-                    </button>
+                    </Link>
                 </div>
             </div>
         </div>

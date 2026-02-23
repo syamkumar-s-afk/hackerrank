@@ -1,35 +1,14 @@
 "use client";
-import { useState, useEffect } from "react";
+import React from "react";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import QuestionPanel from "../components/QuestionPanel";
 import EditorPanel from "../components/EditorPanel";
 import Footer from "../components/Footer";
-import { questions } from "../data/questionData";
+import { useTest } from "../context/TestContext";
 
 export default function Home() {
-    const [hasStarted, setHasStarted] = useState(false);
-    const [activeQuestionId, setActiveQuestionId] = useState(questions[0].id);
-
-    useEffect(() => {
-        const initializeTest = async () => {
-            try {
-                // Request camera access. The stream is kept alive in memory so the browser 
-                // shows the active recording icon, but no data is actually recorded or uploaded.
-                const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
-                // Store the stream globally or in window so it doesn't get garbage collected immediately
-                window.activeProctorStream = stream;
-            } catch (err) {
-                // Ignore camera failures because the user explicitly requested avoiding hard blocks
-                console.warn("Camera access denied or unavailable, proceeding to test anyway.");
-            } finally {
-                // Unconditionally allow the user into the test
-                setHasStarted(true);
-            }
-        };
-
-        initializeTest();
-    }, []);
+    const { hasStarted, activeQuestionId, setActiveQuestionId, questions } = useTest();
 
     const activeQuestion = questions.find(q => q.id === activeQuestionId) || questions[0];
 

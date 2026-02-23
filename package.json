@@ -11,6 +11,7 @@
     "tailwind:watch": "tailwindcss -i ./app/globals.css -o ./app/output.css --watch"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@monaco-editor/react": "^4.6.0",
     "lucide-react": "^0.575.0",
     "next": "14.2.14",

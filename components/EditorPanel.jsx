@@ -2,11 +2,13 @@
 import React, { useRef } from "react";
 import Editor from "@monaco-editor/react";
 import { useTheme } from "../context/ThemeContext";
+import { useTest } from "../context/TestContext";
 import { Info, Maximize2, RotateCcw, ChevronDown, ChevronUp, Play } from "lucide-react";
 import Footer from "./Footer";
 
 export default function EditorPanel({ question }) {
     const { theme } = useTheme();
+    const { editorCodes, updateEditorCode } = useTest();
     const editorRef = useRef(null);
 
     function handleEditorDidMount(editor, monaco) {
@@ -88,7 +90,12 @@ export default function EditorPanel({ question }) {
                     <Info size={16} className="text-gray-400 cursor-pointer hover:text-gray-600 dark:hover:text-gray-300 transition-colors" />
                 </div>
                 <div className="flex items-center gap-4 text-gray-400">
-                    <RotateCcw size={16} className="cursor-pointer hover:text-gray-800 dark:hover:text-white transition-colors" title="Reset Code" />
+                    <RotateCcw
+                        size={16}
+                        className="cursor-pointer hover:text-gray-800 dark:hover:text-white transition-colors"
+                        title="Reset Code"
+                        onClick={() => updateEditorCode(question.id, question.codeTemplate)}
+                    />
                     <Maximize2 size={16} className="cursor-pointer hover:text-gray-800 dark:hover:text-white transition-colors" title="Fullscreen" />
                 </div>
             </div>
@@ -100,7 +107,8 @@ export default function EditorPanel({ question }) {
                     defaultLanguage="java"
                     theme={theme === "dark" ? "hr-dark" : "vs-light"}
                     beforeMount={handleEditorBeforeMount}
-                    value={question.codeTemplate}
+                    value={editorCodes[question.id] || question.codeTemplate}
+                    onChange={(val) => updateEditorCode(question.id, val)}
                     onMount={handleEditorDidMount}
                     options={{
                         minimap: { enabled: false },

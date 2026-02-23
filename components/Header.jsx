@@ -1,21 +1,11 @@
 "use client";
-import { useState, useEffect } from "react";
 import { useTheme } from "../context/ThemeContext";
+import { useTest } from "../context/TestContext";
 import { Layout, Sun, Moon, HelpCircle, Clock } from "lucide-react";
 
 export default function Header() {
     const { theme, toggleTheme } = useTheme();
-    const [timeLeft, setTimeLeft] = useState(3599); // 59 minutes, 59 seconds
-
-    useEffect(() => {
-        if (timeLeft <= 0) return;
-
-        const timerId = setInterval(() => {
-            setTimeLeft((prev) => prev - 1);
-        }, 1000);
-
-        return () => clearInterval(timerId);
-    }, [timeLeft]);
+    const { timeLeft } = useTest();
 
     const minutes = Math.floor(timeLeft / 60);
     const seconds = timeLeft % 60;
